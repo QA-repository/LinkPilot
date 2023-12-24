@@ -21,8 +21,8 @@ public class URLCrawler {
     private static int scannedLinks = 0;
     public static void main(String[] args) {
         try {
-            String startingUrl = "https://unhcr-dev.unhcr.info/admin/content";
-            String cookie="geo_redirect_closed=1; _fbp=fb.1.1697985671735.265970786; _gcl_au=1.1.327770529.1698049924; _rup_ga=GA1.1.1286796730.1698049924; _ga=GA1.3.1286796730.1698049924; cookie_consent=true; cookie_consent=true; __qca=P0-853754207-1701264865442; m_ses=20231206135750; _ga_RDNCXLXWYH=GS1.1.1701860813.4.0.1701860822.51.0.0; __utmc=104234436; __utmz=104234436.1701869901.44.2.utmcsr=acnur-dev.unhcr.info|utmccn=(referral)|utmcmd=referral|utmcct=/; _gid=GA1.2.733259734.1702792235; __utma=104234436.1286796730.1698049924.1702453113.1703082390.49; _ga_TNZM2XR4ZN=GS1.1.1703082389.64.1.1703082488.0.0.0; m_cnt=118; _ga=GA1.2.1286796730.1698049924; _dc_gtm_UA-1473340-18=1; _dc_gtm_UA-1473340-17=1; _dc_gtm_UA-1473340-123=1; _uetsid=324a6f009ca011eebc2e3ddf47f6266c; _uetvid=b9d795e0419a11ee974f859fad821d29; SSESS38cb940190729d4ba0648db288282ad3=i9MlBEVoW%2Cdr7oecO9zGru1BD95k-sLSzAas%2CXFCYStfvtkp; _rup_ga_EVDQTJ4LMY=GS1.1.1703185874.132.1.1703186221.0.0.0; _ga_KD4J9DLPE3=GS1.1.1703185874.102.1.1703186221.0.0.0";
+            String startingUrl = System.getProperty("startingUrl", "defaultStartingUrl");
+            String cookie = System.getProperty("cookie", "defaultCookieValue");
 
             Set<String> processedURLs = new HashSet<>();
             Workbook workbook = new XSSFWorkbook();
