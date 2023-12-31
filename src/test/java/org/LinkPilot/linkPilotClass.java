@@ -32,10 +32,9 @@ public class linkPilotClass {
     System.out.println("inside main");
 
     try {
-       //     String startingUrl = System.getProperty("startingUrl", "defaultStartingUrl");
-        //    String cookie = System.getProperty("cookie", "defaultCookieValue");
-String startingUrl="";
-String cookie="";
+         String startingUrl = System.getProperty("startingUrl", "defaultStartingUrl");
+         String cookie = System.getProperty("cookie", "defaultCookieValue");
+
             Set<String> processedURLs = new HashSet<>();
             Workbook workbook = new XSSFWorkbook();
             Sheet resultsSheet = workbook.createSheet("Testing Result");
