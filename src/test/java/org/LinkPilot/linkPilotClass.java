@@ -1,5 +1,10 @@
-import org.apache.poi.ss.usermodel.*;
+package org.LinkPilot;
+import org.apache.poi.ss.usermodel.Cell;
+import org.apache.poi.ss.usermodel.Row;
+import org.apache.poi.ss.usermodel.Sheet;
+import org.apache.poi.ss.usermodel.Workbook;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
+import org.jetbrains.annotations.NotNull;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
@@ -12,23 +17,32 @@ import java.nio.charset.Charset;
 import java.nio.charset.StandardCharsets;
 import java.util.*;
 
-public class URLCrawler {
+public class linkPilotClass {
+    public  void main(String[] args) {
+
+        System.out.println("inside main");
+        Link_Checker();
+    }
     static long startTime;
     static long endTime;
     static String urlType = "internal";
     private static int scannedLinks = 0;
-    public static void main(String[] args) {
-        try {
-            String startingUrl = System.getProperty("startingUrl", "defaultStartingUrl");
-            String cookie = System.getProperty("cookie", "defaultCookieValue");
+@Test
+    public void Link_Checker() {
+    System.out.println("inside main");
 
+    try {
+       //     String startingUrl = System.getProperty("startingUrl", "defaultStartingUrl");
+        //    String cookie = System.getProperty("cookie", "defaultCookieValue");
+String startingUrl="";
+String cookie="";
             Set<String> processedURLs = new HashSet<>();
             Workbook workbook = new XSSFWorkbook();
             Sheet resultsSheet = workbook.createSheet("Testing Result");
 
             crawlAndVerifyURL(startingUrl, cookie, resultsSheet, processedURLs);
 
-            try (FileOutputStream fileOut = new FileOutputStream("C:\\Users\\Vardot QA\\Downloads\\test 2.xlsx")) {
+            try (FileOutputStream fileOut = new FileOutputStream("C:\\Users\\Vardot QA\\Downloads\\linkPilotClass 2.xlsx")) {
                 workbook.write(fileOut);
             } catch (IOException e) {
                 e.printStackTrace();
@@ -43,7 +57,7 @@ public class URLCrawler {
         }
     }
 
-    private static void crawlAndVerifyURL(String startingUrl, String cookie, Sheet resultsSheet, Set<String> processedURLs) {
+    private static void crawlAndVerifyURL(String startingUrl, String cookie, @NotNull Sheet resultsSheet, Set<String> processedURLs) {
         Queue<String> queue = new LinkedList<>();
         Set<String> visitedURLs = new HashSet<>();
 
@@ -52,7 +66,7 @@ public class URLCrawler {
         Row headerRow = resultsSheet.createRow(0);
         createCell(headerRow, 0, "URL");
         createCell(headerRow, 1, "URL Type");
-        createCell(headerRow, 2, "Test Status");
+        createCell(headerRow, 2, "linkPilotClass Status");
         createCell(headerRow, 3, "H1 tags number");
         createCell(headerRow, 4, "Response Time");
         createCell(headerRow, 5, "PDF Size");
@@ -94,7 +108,7 @@ public class URLCrawler {
                 processedURLs.add(currentUrl);
 
                 if (isSameDomain || !result.equals("Passed")) {
-                    Elements links = document.select("a[href]");
+                    Elements links = document.select("linkPilotClass[href]");
 
                     for (Element link : links) {
                         String url = link.absUrl("href");
