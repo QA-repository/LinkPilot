@@ -26,6 +26,7 @@
                     <suiteXmlFiles>
                         <suiteXmlFile>src/TestNG.xml</suiteXmlFile> <!-- Path to your TestNG XML suite file -->
                     </suiteXmlFiles>
+
                 </configuration>
             </plugin>
         </plugins>

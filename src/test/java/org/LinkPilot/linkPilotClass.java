@@ -1,4 +1,5 @@
 package org.LinkPilot;
+
 import org.apache.poi.ss.usermodel.Cell;
 import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.ss.usermodel.Sheet;
@@ -18,22 +19,23 @@ import java.nio.charset.StandardCharsets;
 import java.util.*;
 
 public class linkPilotClass {
-    public  void main(String[] args) {
-
+    public void main(String[] args) {
         System.out.println("inside main");
         Link_Checker();
     }
+
     static long startTime;
     static long endTime;
     static String urlType = "internal";
     private static int scannedLinks = 0;
-@Test
-    public void Link_Checker() {
-    System.out.println("inside main");
 
-    try {
-         String startingUrl = System.getProperty("startingUrl", "defaultStartingUrl");
-         String cookie = System.getProperty("cookie", "defaultCookieValue");
+    @Test
+    public void Link_Checker() {
+        System.out.println("inside main");
+
+        try {
+            String startingUrl = System.getProperty("startingUrl", "defaultStartingUrl");
+            String cookie = System.getProperty("cookie", "defaultCookieValue");
 
             Set<String> processedURLs = new HashSet<>();
             Workbook workbook = new XSSFWorkbook();
@@ -41,7 +43,7 @@ public class linkPilotClass {
 
             crawlAndVerifyURL(startingUrl, cookie, resultsSheet, processedURLs);
 
-            try (FileOutputStream fileOut = new FileOutputStream("C:\\Users\\Vardot QA\\Downloads\\linkPilotClass 2.xlsx")) {
+            try (FileOutputStream fileOut = new FileOutputStream(System.getProperty("user.dir")+"/LatestResult")) {
                 workbook.write(fileOut);
             } catch (IOException e) {
                 e.printStackTrace();
@@ -107,7 +109,7 @@ public class linkPilotClass {
                 processedURLs.add(currentUrl);
 
                 if (isSameDomain || !result.equals("Passed")) {
-                    Elements links = document.select("linkPilotClass[href]");
+                    Elements links = document.select("a[href]");
 
                     for (Element link : links) {
                         String url = link.absUrl("href");
